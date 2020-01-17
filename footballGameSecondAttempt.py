@@ -49,12 +49,59 @@ class Player(object):
             self.goalie_save += 2
 
     def levelUp(self):
+        kick_updated = "Your shooting has improved, it is now "
+        speed_updated = "Your speed has increased, it is now "
+        dribble_updated = "Your dribbling has improved, it is now "
+        tackle_updated = "Your tackling has improved, it is now "
+        kickblock_updated = "Your kick blocking has improved, it is now "
+        pass_updated = "Your passing has improved, it is now "
         while self.attribute_points != 0:
-            chosen = input("Please enter the name of the attribute you wish to add points to: ")
-            setattr(self,chosen.strip(),5)
+            print("""WELCOME TO THE WORLD OF FOOTBALL!!!!!!!! BEFORE WE BEGIN
+            PLEASE ASSIGN THE SKILL POINTS TO YOUR PLAYER!
+            PLEASE BE INFORMED THAT THE FIRST OPPONENT HAS SKILLS RANGING FROM 3-6 SO DISTRIBUTE YOUR 10 POINTS WISELY!
+
+            These are your current attribute values:
+            shooting       %d
+
+            speed          %d
+
+            dribble        %d
+
+            tackle         %d
+
+            kickblock      %d
+
+            pass           %d
+
+            You have %d skillpoints left""" % (self.shooting , self.speed , self.dribble , self.tackle , self.kickblock , self.passing , self.attribute_points))
+            
+            user_input = input("What do you want to apply points to? ")
+
+            if user_input == 'shooting':
+                self.shooting += 1
+                print("\n",kick_updated, self.shooting,"\n")
+                
+            elif user_input == 'speed':
+                self.speed += 1
+                print("\n",speed_updated, self.speed,"\n")
+                
+            elif user_input == 'dribble':
+                self.dribble += 1
+                print("\n",dribble_updated, self.dribble,"\n")
+                
+            elif user_input == 'tackle':
+                self.tackle += 1
+                print("\n",tackle_updated, self.tackle,"\n")
+                
+            elif user_input == 'kickblock':
+                self.kickblock += 1
+                print("\n",kickblock_updated, self.kickblock,"\n")
+                
+            elif user_input == 'pass':
+                self.passing += 1
+                print("\n",pass_updated,self.passing,"\n")
+                
             self.attribute_points -= 1
-            print("One point was added to " + chosen)
-            print(chosen,getattr(self,chosen))
     def tryToScore(self, opponent):
         genRan = random.randint(1,10)
         statDiff = self.kick - opponent.goalie_save
@@ -85,13 +132,14 @@ class Player(object):
             dribblerName = "The opponent passes"
             opponentName = "your teammates"
         else:
-            print(False)
             dribblerName = "You pass"
             opponentName = "the opposing team's defender"
         if(self.passing >= opponent.kickblock):
-            return dribblerName + " the ball through " + opponentName + " with relative ease!"
+            print(dribblerName + " the ball through " + opponentName + " with relative ease!")
+            return(True)
         else: 
-            return dribblerName + " the ball, but it is intercepted by "+opponentName+"!!!"
+            print(dribblerName + " the ball, but it is intercepted by "+opponentName+"!!!")
+            return(False)
         
 
 MyPlayer = Player("Anon","Striker")
@@ -110,7 +158,12 @@ Opponent_11 = Player("Opponent 11","Striker")
 def sequence1(playerTeam, playerName):
     print('''And the match is kicking off!!! Ladies and Gentlemen here we go!!! The %s are going to be kicking it off first and oh well it looks like 
     there star player, %s, has the ball!!!! He takes it pass midfield and tries to dribble through the opposing team's defender!!!''' % (playerTeam, playerName))
-    print(MyPlayer.tryToDribble(Opponent_5))
+    rands = random.choice(['dribble','pass'])
+    if rands == 'dribble':
+        result = MyPlayer.tryToDribble(Opponent_6)
+        print(result)
+    elif rands == 'pass':
+        print(MyPlayer.tryToPass(Opponent_7))
 
 def preset_introfunction(team1, team2):
     print('''Ladies and Gentlemen! Welcome to today's game.
