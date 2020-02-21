@@ -14,5 +14,13 @@ public class test {
         Player Opponent_11 = new Player("Opponent 11","Striker");
 
         Anon.levelUp();
+   
+
+    
+    }
+    
+    public void sequence1(String playerTeam, String playerName) {
+        System.out.printf("And the match is kicking off!!! Ladies and Gentlemen here we go!!! The %s are going to be kicking it off first and oh well it looks like\nthere star player, %s, has the ball!!!! \nHe takes it pass midfield and tries to dribble through the opposing team's defender!!!",playerTeam,playerName);
+    
     }
 }
